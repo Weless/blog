@@ -8,30 +8,44 @@ import (
 
 func CollectRoute(r *gin.Engine) *gin.Engine {
 	r.Use(middleware.CORSMiddleware())
-	r.GET("/",controller.IndexHandler)
-	r.GET("/articles",controller.ArticleHandler)
-	r.GET("/totalLength",controller.GetTotalLengthHandler)
-	r.GET("/articles/detail/:articleId",controller.ArticleDetailController)
+	r.GET("/api/", controller.IndexHandler)
+	r.GET("/api/articles", controller.ArticleHandler)
 
-	r.GET("/categories",controller.CategoriesHandler)
-	r.GET("/categories/:categoryId",controller.CategoryArticleHandler)
+	// 管理端用
 
+	r.GET("/api/totalLength", controller.GetTotalLengthHandler)
+	r.GET("/api/articles/detail/:articleId", controller.ArticleDetailController)
 
-	r.GET("/labels",controller.LabelHandler)
-	r.GET("/labels/:labelId",controller.LabelArticleHandler)
+	r.GET("/api/categories", controller.CategoriesHandler)
+	r.GET("/api/categories/:categoryId", controller.CategoryArticleHandler)
 
+	r.GET("/api/latest", controller.LatestArticleHandler)
 
-	r.GET("/latest",controller.LatestArticleHandler)
-
-	r.GET("/archive",controller.ArchiveHandler)
-	r.GET("/archive/:year/:month",controller.ArchiveArticleHandler)
+	r.GET("/api/archive", controller.ArchiveHandler)
+	r.GET("/api/archive/:year/:month", controller.ArchiveArticleHandler)
 
 	// 平台接口
-	// 删除
-	r.POST("/deleteArticle",controller.DeleteHandler)
-	// 插入
-	r.POST("/insertArticle",controller.InsertHandler)
-	// 修改
-	r.POST("/updateArticle",controller.UpdateHandler)
+
+	// 获取文章详情
+	r.GET("/api/articleDetail", controller.ArticleDetailForManagementHandler)
+	// 获取文章列表
+	r.GET("/api/articleList", controller.ArticleListHandler)
+	// 获取分类列表
+	r.GET("/api/categoryList", controller.GetCategoryListHandler)
+	// 删除文章
+	r.POST("/api/deleteArticle", controller.DeleteHandler)
+	// 插入文章
+	r.POST("/api/insertArticle", controller.InsertHandler)
+	// 修改文章
+	r.POST("/api/updateArticle", controller.UpdateHandler)
+	// 插入分类
+	r.POST("/api/insertCategory", controller.InsertCategoryHandler)
+
+	// 创建用户
+	r.POST("/api/auth/register", controller.RegisterHandler)
+	// 登录
+	r.POST("/api/auth/login", controller.LoginHandler)
+
+	r.GET("/api/auth/info", middleware.AuthMiddleware(), controller.UserInfoHandler)
 	return r
 }

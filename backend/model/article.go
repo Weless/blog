@@ -6,12 +6,12 @@ type Article struct {
 	ArticleId    int `gorm:"primary_key;AUTO_INCREMENT"`
 	Title        string
 	CreateTime   time.Time
+	UpdatedAt    time.Time
 	CommentCount int
 	ViewCount    int
 	Content      string
 	Summary      string
 	CategoryId   int
-	LabelId      int
 }
 
 type ArticleInfo struct {
@@ -20,11 +20,6 @@ type ArticleInfo struct {
 }
 
 type LatestArticle struct {
-	ArticleId    int `gorm:"primary_key;AUTO_INCREMENT"`
-	Title        string
+	ArticleId int `gorm:"primary_key;AUTO_INCREMENT"`
+	Title     string
 }
-
-
-
-
-

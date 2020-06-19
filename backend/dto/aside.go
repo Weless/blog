@@ -5,16 +5,14 @@ import (
 	"blog/model"
 )
 
-func GetAllCategories()[]model.Category {
+func GetAllCategories() []model.CategoryInfo {
 	return dao.GetAllCategories()
 }
 
-func GetAllLabels() []model.Label {
-	return dao.GetAllLabels()
-}
-
-func GetAllArchives() []model.Archive{
+func GetAllArchives() []model.Archive {
 	return dao.GetAllArchives()
 }
 
-
+func InsertCategory(categoryName string) error {
+	return dao.InsertCategory(categoryName)
+}

@@ -5,11 +5,14 @@ import (
 	"blog/model"
 )
 
-func GetArticleList(pageNum int ) []model.ArticleInfo{
+func GetArticleList(pageNum int) []model.ArticleInfo {
 	articleList := dao.GetArticleList(pageNum)
 	return articleList
 }
 
+func GetArticlesByPageAndPageSize(page, pageSize int) []model.ArticleInfo {
+	return dao.GetArticlesByPageAndPageSize(page, pageSize)
+}
 func GetTotalLength() int {
 	return dao.GetTotalLength()
 }
@@ -18,31 +21,31 @@ func GetLatestArticles(num int) []model.Article {
 	return dao.GetLatestArticles(num)
 }
 
-func GetArticlesByTime(year,month int) []model.Article{
-	return dao.GetArticlesByTime(year,month)
+func GetArticlesByTime(year, month int) []model.ArticleInfo {
+	return dao.GetArticlesByTime(year, month)
 }
 
-func GerArticlesByCategory(categoryId int) []model.ArticleInfo{
+func GerArticlesByCategory(categoryId int) []model.ArticleInfo {
 	return dao.GetArticlesByCategory(categoryId)
-}
-
-func GetArticlesByLabel(labelId int ) []model.ArticleInfo {
-	return dao.GetArticlesByLabel(labelId)
 }
 
 func GetArticleById(id int) []model.Article {
 	return dao.GetArticleById(id)
 }
 
-func InsertArticle(title,content,summary string, categoryId, labelId int)  {
-	dao.InsertArticle(title,content,summary,categoryId,labelId)
+func GetArticleByIdWithCategoryName(articleId int) model.ArticleInfo {
+	return dao.GetArticleByIdWithCategoryName(articleId)
 }
 
-func UpdateArticle(id int ,title,content,summary string, categoryId,labelId int)  {
-	dao.UpdateArticle(id,title,content,summary , categoryId,labelId)
+func InsertArticle(title, content, summary string, categoryId int) {
+	dao.InsertArticle(title, content, summary, categoryId)
 }
 
-func DeleteArticle(id int)  {
+func UpdateArticle(id int, title, content, summary string, categoryId int) {
+	dao.UpdateArticle(id, title, content, summary, categoryId)
+}
+
+func DeleteArticle(id int) {
 	dao.DeleteArticle(id)
 }
 

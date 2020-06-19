@@ -10,8 +10,8 @@ func GetAllArchives() []model.Archive {
 	return archives
 }
 
-func GetArticlesByTime(year,month int)[]model.Article {
-	var articles []model.Article
+func GetArticlesByTime(year, month int) []model.ArticleInfo {
+	var articles []model.ArticleInfo
 	sql := `SELECT
 	article_id,
 	title,
@@ -20,7 +20,6 @@ func GetArticlesByTime(year,month int)[]model.Article {
 	view_count,
 	summary,
 	category_id,
-	label_id,
 	categories.name AS name 
 FROM
 	articles
@@ -30,6 +29,6 @@ WHERE
 	AND MONTH ( create_time ) = ?
 ORDER BY
 	article_id DESC`
-	DB.Raw(sql,year,month).Scan(&articles)
+	DB.Raw(sql, year, month).Scan(&articles)
 	return articles
 }
