@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func GetArticleList(pageNum int) []model.ArticleInfo {
+func GetArticleList(pageSize, pageNum int) []model.ArticleInfo {
 	var articles []model.ArticleInfo
 	sql := `SELECT 
 	article_id,
@@ -20,9 +20,9 @@ func GetArticleList(pageNum int) []model.ArticleInfo {
     join categories 
     on categories.c_id = articles.category_id
 	order by article_id desc
-	limit 5 offset ? 
+	limit ? offset ? 
 	`
-	DB.Raw(sql, 5*(pageNum-1)).Scan(&articles)
+	DB.Raw(sql, pageSize, pageSize*(pageNum-1)).Scan(&articles)
 	return articles
 }
 
@@ -55,10 +55,10 @@ func GetTotalLength() int {
 	return count
 }
 
-func GetArticleById(id int) []model.Article {
-	var article []model.Article
-	DB.First(&article, id)
-	return article
+func GetArticleById(id int) (model.Article, error) {
+	var article model.Article
+	err := DB.First(&article, id).Error
+	return article, err
 }
 
 // 管理端用

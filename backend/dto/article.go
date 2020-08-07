@@ -5,8 +5,8 @@ import (
 	"blog/model"
 )
 
-func GetArticleList(pageNum int) []model.ArticleInfo {
-	articleList := dao.GetArticleList(pageNum)
+func GetArticleList(pageSize, pageNum int) []model.ArticleInfo {
+	articleList := dao.GetArticleList(pageSize, pageNum)
 	return articleList
 }
 
@@ -29,7 +29,7 @@ func GerArticlesByCategory(categoryId int) []model.ArticleInfo {
 	return dao.GetArticlesByCategory(categoryId)
 }
 
-func GetArticleById(id int) []model.Article {
+func GetArticleById(id int) (model.Article, error) {
 	return dao.GetArticleById(id)
 }
 

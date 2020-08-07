@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath:"/admin/",
   css: {
     // 是否使用css分离插件 ExtractTextPlugin
     extract: true,

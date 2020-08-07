@@ -8,3 +8,8 @@ datasource:
   username: root
   password: joeytest123...
   charset: utf8
+redis:
+  addr: 127.0.0.1
+  port: 6379
+  password:
+  DB: 0

@@ -28,46 +28,8 @@
       </el-col>
       
     </el-row>
-
-    <el-row class="editor-row" :gutter="30">
-      <el-col :span="12" class="content-md">
-        <el-input
-          type="textarea"
-          class="content-textarea"
-          placeholder="正文"
-          v-model="mdContent"
-          ref="mdContent"
-        ></el-input>
-        <div class="img-upload">
-          <i class="el-icon-picture" v-show="!isUploadShow" @click="isUploadShow = true"></i>
-          <i class="el-icon-close" v-show="isUploadShow" @click="isUploadShow = false"></i>
-          <!-- <el-upload
-            class="upload-demo"
-            drag
-            action="https://jsonplaceholder.typicode.com/posts/"
-            multiple
-            v-show="isUploadShow"
-          >
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">
-              将文件拖到此处，或<em>点击上传</em>
-            </div>
-          </el-upload>-->
-
-
-          <!-- <div class="img-form" v-show="isUploadShow" @click="uploadImgClick">
-            <input class="img-input" type="file" ref="imgInput" @change="uploadImg" />
-            <div class="img-content">
-              <div class="text">点击或者拖拽上传图片</div>
-              <i class="el-icon-upload"></i>
-            </div>
-          </div> -->
-        </div>
-      </el-col>
-      <el-col :span="12">
-        <div class="content-show" v-html="htmlText" ref="htmlContent"></div>
-      </el-col>
-    </el-row>
+    <mavon-editor v-model="mdContent" :codeStyle="codeStyle" :ishljs="true" />
+  
 
     <el-row class="editor-row" :gutter="30">
       <el-col>
@@ -147,6 +109,7 @@ export default {
       content: "",
       categoryList: [],
       categoryId:0,
+      codeStyle:'monokai-sublime'
     };
   },
   methods: {

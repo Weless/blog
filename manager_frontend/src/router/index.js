@@ -1,9 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 Vue.use(VueRouter);
+Vue.use(mavonEditor)
 
 const routes = [
+  
   {
     path: "/",
     redirect: "/login"
@@ -35,11 +39,11 @@ const routes = [
       }
     ]
   },
-  {
-    path: "/register",
-    name: "register",
-    component: () => import("@/views/register/register")
-  },
+  // {
+  //   path: "/register",
+  //   name: "register",
+  //   component: () => import("@/views/register/register")
+  // },
   {
     path: "/login",
     component: () => import("@/views/login/login")
@@ -52,7 +56,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: "/admin/",
   routes
 });
 

@@ -12,7 +12,6 @@ func CollectRoute(r *gin.Engine) *gin.Engine {
 	r.GET("/api/articles", controller.ArticleHandler)
 
 	// 管理端用
-
 	r.GET("/api/totalLength", controller.GetTotalLengthHandler)
 	r.GET("/api/articles/detail/:articleId", controller.ArticleDetailController)
 
@@ -23,7 +22,6 @@ func CollectRoute(r *gin.Engine) *gin.Engine {
 
 	r.GET("/api/archive", controller.ArchiveHandler)
 	r.GET("/api/archive/:year/:month", controller.ArchiveArticleHandler)
-
 	// 平台接口
 
 	// 获取文章详情

@@ -29,7 +29,7 @@ func InitConfig() {
 }
 
 func TestGetArticleList(t *testing.T) {
-	articles := GetArticleList(2)
+	articles := GetArticleList(5, 2)
 	t.Logf("length: %v\n", len(articles))
 	for _, article := range articles {
 		t.Logf("article id:%d\n", article.ArticleId)
@@ -48,8 +48,8 @@ func TestGetLatestArticles(t *testing.T) {
 }
 
 func TestGetArticleById(t *testing.T) {
-	articles := GetArticleById(1)
-	t.Logf("articles: %+v\n", articles)
+	article := GetArticleById(1)
+	t.Logf("articles: %+v\n", article)
 }
 
 func TestGetLatestArticle(t *testing.T) {

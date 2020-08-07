@@ -19,7 +19,8 @@ func ArticleHandler(c *gin.Context) {
 		response.Fail(c, "no data", nil)
 		return
 	}
-	articles := dto.GetArticleList(pageNum)
+	pageSize := 5
+	articles := dto.GetArticleList(pageSize, pageNum)
 
 	if len(articles) == 0 {
 		response.Fail(c, "no data", nil)
